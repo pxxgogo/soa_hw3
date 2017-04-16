@@ -1,0 +1,11 @@
+.face-img, .plus-img {
+    height: 100px;
+    margin: 15px;
+}
+
+
+.face-img:hover, .plus-img:hover {
+    cursor: hand;
+    background: #0d8ddb;
+
+}

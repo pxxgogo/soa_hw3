@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block link %}
+<link href="/static/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+<link href="/static/css/face_gallery.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Faces Gallery</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>Faces Gallery</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    <h2>Faces Gallery</h2>
+                    <p>
+                        If you want to <strong>remove</strong> the following face, just click it!<br>
+                        If you want to <strong>add </strong> a new face, click <strong> the plus sign </strong>!
+                    </p>
+
+                    <div class="lightBoxGallery">
+                        {% for face in faces_list %}
+                        <img src="{{face.face_url}}" class="face-img" id="f-{{face.face_id}}" onclick="delete_face({{face.face_id}})">
+                        {% endfor %}
+                        <img src="/static/img/plus.png" class="plus-img">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="footer">
+    <div class="pull-right">
+        10GB of <strong>250GB</strong> Free.
+    </div>
+    <div>
+        <strong>Copyright</strong> Example Company &copy; 2014-2015
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<!-- blueimp gallery -->
+<script src="/static/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+<script src="/static/js/face_gallery.js"></script>
+{% endblock %}
+

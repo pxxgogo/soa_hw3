@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'faceBook',
 ]
 
 MIDDLEWARE = [
@@ -117,8 +118,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+AUTH_USER_MODEL = 'account.AccountUser'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+
+from faceBook.faceApi import FaceAPI
+
+FaceAPI.initModel()
+if not os.path.exists(os.path.join(BASE_DIR, "media")):
+    os.mkdir(os.path.join(BASE_DIR, "media"))
+
+TEMP_PHOTO_DIR = os.path.join(BASE_DIR, "media/faceTempPhoto")

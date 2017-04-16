@@ -13,43 +13,136 @@
 
     <link href="/static/css/animate.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="/static/css/sweetalert.css" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+
 
 </head>
 
 <body class="gray-bg">
 
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
         <div>
-            <div>
 
-                <h1 class="logo-name">IN+</h1>
+            <h1 class="logo-name">IN+</h1>
 
-            </div>
-            <h3>Welcome to IN+</h3>
-            <p>Perfectly designed
-                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-            </p>
-            <p>Login in. To see it in action.</p>
-            <form class="m-t" role="form" action="/finish_login" method="post">
-                {% csrf_token %}
-                <p class="text-muted text-center" style="color: #0d8ddb"><small>{{error_info}}</small></p>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username" required="" name="username">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="" name="password">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-                <p class="text-muted text-center"><small>Do not have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="/register">Create an account</a>
-            </form>
-            <p class="m-t"> <small>2014011245 Pan Xingyu SOA HW3</small> </p>
         </div>
-    </div>
+        <h3>Welcome to IN+</h3>
+        <p>Perfectly designed
+            <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+        </p>
+        <p>Login in. To see it in action.</p>
+        <div class="ibox-content">
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">
+                                <a id="login-1-panel-button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseOne">login with <strong>username & password</strong></a>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <form class="m-t" role="form" action="/login" method="post">
+                                    {% csrf_token %}
+                                    <p class="text-muted text-center" style="color: #0d8ddb">
+                                        <small>{{error_info}}</small>
+                                    </p>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Username" required=""
+                                               name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password" required=""
+                                               name="password">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a id="login-2-panel-button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTwo">login with <strong>your uploaded photo</strong></a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>
+                                    You <strong>must</strong> have added one more face to your face gallery before.<br>
+                                    The updated photo <strong> must </strong> contain <strong> only one </strong> face.
+                                </p>
+                                <form id="my-awesome-dropzone" class="dropzone" action="#">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Username" required=""
+                                               name="username">
+                                    </div>
+                                    <div class="dropzone-previews"></div>
+                                    <button type="submit" class="btn btn-primary pull-right">Submit your photo!
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a id="login-3-panel-button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseThree">login with <strong>your captured photo</strong></a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>
+                                    You <strong>must</strong> have added one more face to your face gallery before.<br>
+                                    The captured photo <strong> must </strong> contain <strong> only one </strong> face.
+                                </p>
+                                <form>
+                                    <input type="text" class="form-control" placeholder="Username" required=""
+                                           name="username" id="username-log-in-captured-photo">
+                                    <div class="form-group">
+                                        <div class="panel-body center-block" id="my-camera">
+                                        </div>
+                                    </div>
+                                    <input type="button" value="Access Camera"
+                                           class="btn btn-primary block full-width m-b"
+                                           onClick="setup(); $(this).hide().next().show();">
+                                    <input type="button" value="Take Snapshot" onClick="take_snapshot()"
+                                           class="btn btn-primary block full-width m-b"
+                                           style="display:none">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-muted text-center">
+                    <small>Do not have an account?</small>
+                </p>
+                <a class="btn btn-sm btn-white btn-block" href="/register">Create an account</a>
+            </div>
+        </div>
 
-    <!-- Mainly scripts -->
-    <script src="/static/js/jquery-2.1.1.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+        <p class="m-t">
+            <small>2014011245 Pan Xingyu SOA HW3</small>
+        </p>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/static/js/jquery-2.1.1.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/dropzone/dropzone.js"></script>
+<script src="/static/js/webcam.min.js"></script>
+<script src="/static/js/sweetalert.min.js"></script>
+<script src="/static/js/ajaxCookies.js"></script>
+<script src="/static/js/login.js"></script>
+
 
 </body>
 
