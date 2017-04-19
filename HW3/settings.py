@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'yiht1aa2xfhr#$$s18$4f-%vr#^-f%5^_a=+gz2s!)bde=^e+5'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'faceBook',
+    'predict_car_price',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HW3.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -81,7 +79,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -101,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -114,7 +110,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -133,3 +128,5 @@ if not os.path.exists(os.path.join(BASE_DIR, "media")):
     os.mkdir(os.path.join(BASE_DIR, "media"))
 
 TEMP_PHOTO_DIR = os.path.join(BASE_DIR, "media/faceTempPhoto")
+PREDICT_PRICE_APP_URL = "https://ussouthcentral.services.azureml.net/workspaces/7b937c4961c749629e84596aaa6596d6/services/0ffc8205b5b14c89ac81e987c54868d2/execute?api-version=2.0&details=true"
+PREDICT_PRICE_APP_KEY = "qB/TTK3cRzcvPx3UGSxB3U938I4j89VI5sBCVLkVOdbxgqEbiXDdHeOksLyvm0rHCYp0g26Fm7WiMbJflJUpOA=="

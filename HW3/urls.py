@@ -23,10 +23,11 @@ import account.views
 import account.register
 import faceBook.views
 import faceBook.kernel
+import predict_car_price.views
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
-                  url(r'^$', account.views.index),
+                  url(r'^$', predict_car_price.views.predict_car_price_view),
                   url(r'^logout$', account.views.logout),
                   url(r'^login$', account.login.login),
                   url(r'^register$', account.register.register),
@@ -37,6 +38,8 @@ urlpatterns = [
                   url(r'^face_gallery/ensure_deleting_face$', faceBook.kernel.ensure_deleting_face),
                   url(r'^login_with_updated_photo$', account.login.login_with_updated_photo),
                   url(r'^login_with_captured_photo$', account.login.login_with_captured_photo),
-                  url(r"^face_gallery/send_captured_photo$", faceBook.kernel.send_captured_photo)
+                  url(r'^face_gallery/send_captured_photo$', faceBook.kernel.send_captured_photo),
+                  url(r'^predict_car_price$', predict_car_price.views.predict_car_price_view),
+                  url(r'^predict_car_price/submit_info$', predict_car_price.views.submit_info),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

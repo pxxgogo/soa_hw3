@@ -34,13 +34,13 @@ $(document).ready(function () {
             this.on("successmultiple", function (files, response) {
                 // console.log(response.faces);
                 var faces = response.faces;
-                $("#collapse-link").click();
                 var html_str = "";
                 if (faces.length == 0) {
                     swal("Failure", "No faces detected!", "error");
                     return;
                 }
                 swal("Success", "You need choose one from the detected faces.", "success");
+                $("#collapse-link").click();
                 for (var i = 0; i < faces.length; i++) {
                     html_str += "<img src='" + faces[i].face_data_src + "' class='face-img' id='f-" + faces[i].face_No + "' onclick='choose_face(this)'>"
                 }
@@ -150,13 +150,13 @@ function take_snapshot() {
             },
             success: function (response) {
                 var faces = response.faces;
-                $("#collapse-link").click();
                 var html_str = "";
                 if (faces.length == 0) {
                     swal("Failure", "No faces detected!", "error");
                     return;
                 }
                 swal("Success", "You need choose one from the detected faces.", "success");
+                $("#collapse-link").click();
                 for (var i = 0; i < faces.length; i++) {
                     html_str += "<img src='" + faces[i].face_data_src + "' class='face-img' id='f-" + faces[i].face_No + "' onclick='choose_face(this)'>"
                 }

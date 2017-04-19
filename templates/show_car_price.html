@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Show result</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/predict_car_price">Predict car price</a>
+            </li>
+            <li class="active">
+                <strong>Show result</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="m-b-lg">
+                The Price
+            </h2>
+
+            <div id="animation_box" class="animated">
+                <p class="animation-text-info">
+                </p>
+                <div class="text-center wrapper-content animation-text-box">
+                    <h2>{{price}}</h2>
+
+                </div>
+                <div id="rickshaw_multi" class="rickshaw_graph"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+{%block script%}
+<!-- iCheck -->
+
+<!-- Rickshaw -->
+<script src="/static/js/plugins/rickshaw/vendor/d3.v3.js"></script>
+<script src="/static/js/plugins/rickshaw/rickshaw.min.js"></script>
+<script src="/static/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+        $('.animation_select').click( function(){
+                $('#animation_box').removeAttr('class').attr('class', '');
+                var animation = $(this).attr("data-animation");
+                $('#animation_box').addClass('animated');
+                $('#animation_box').addClass(animation);
+                return false;
+            });
+
+            var graph2 = new Rickshaw.Graph( {
+                element: document.querySelector("#rickshaw_multi"),
+                renderer: 'area',
+                stroke: true,
+                series: [ {
+                    data: [ { x: 0, y: 2 }, { x: 1, y: 5 }, { x: 2, y: 8 }, { x: 3, y: 4 }, { x: 4, y: 8 } ],
+                    color: '#1ab394',
+                    stroke: '#17997f'
+                }, {
+                    data: [ { x: 0, y: 13 }, { x: 1, y: 15 }, { x: 2, y: 17 }, { x: 3, y: 12 }, { x: 4, y: 10 } ],
+                    color: '#eeeeee',
+                    stroke: '#d7d7d7'
+                } ]
+            } );
+            graph2.renderer.unstack = true;
+            graph2.render();
+
+    });
+</script>
+{%endblock%}

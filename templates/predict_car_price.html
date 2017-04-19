@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{%block link%}
+<link href="/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+{%endblock%}
+
+{%block content%}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Predict car price</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>Predict car price</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Please fill in the form below.
+                        <small>We need the information of your car.</small>
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal" action="/predict_car_price/submit_info">
+                        {% csrf_token %}
+                        <div class="form-group"><label class="col-sm-2 control-label">Brand<br/>
+                            <small class="text-navy">Choose one from the following brands</small>
+                        </label>
+
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="make">
+                                    <option>Toyota
+                                    </option>
+                                    <option>Nissan
+                                    </option>
+                                    <option>Mitsubishi
+                                    </option>
+                                    <option>Honda
+                                    </option>
+                                    <option>Volkswagen
+                                    </option>
+                                    <option>Subaru
+                                    </option>
+                                    <option>Mazda
+                                    </option>
+                                    <option>Volvo
+                                    </option>
+                                    <option>Peugot
+                                    </option>
+                                    <option>Mercury
+                                    </option>
+                                    <option>Saab
+                                    </option>
+                                    <option>BMW
+                                    </option>
+                                    <option>Porsche
+                                    </option>
+                                    <option>Plymouth
+                                    </option>
+                                    <option>Mercedes-benz
+                                    </option>
+                                    <option>Jaguar
+                                    </option>
+                                    <option>Isuzu
+                                    </option>
+                                    <option>Dodge
+                                    </option>
+                                    <option>Chevrolet
+                                    </option>
+                                    <option>Audi
+                                    </option>
+                                    <option>Alfa-romero
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Body Style<br/>
+                            <small class="text-navy">Choose one from the following styles</small>
+                        </label>
+                            <div class="col-sm-10">
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="sedan" name="body_style">
+                                        <i></i> Sedan
+                                    </label>
+                                </div>
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="hatchback" name="body_style">
+                                        <i></i> Hatchback
+                                    </label>
+                                </div>
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="wagon" name="body_style">
+                                        <i></i> Wagon
+                                    </label>
+                                </div>
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="hardtop" name="body_style">
+                                        <i></i> Hardtop
+                                    </label>
+                                </div>
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="convertible" name="body_style">
+                                        <i></i> Convertible
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Wheel Base</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="wheel_base"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Engine Size</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="engine_size"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Horsepower</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="horsepower"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Peak RPM</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="peak_rpm"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Highway MPG</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="highway_mpg"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-white" type="submit">Clear</button>
+                                <button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+{%block script%}
+<!-- iCheck -->
+<script src="/static/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+        });
+        $('#submit-btn').click(function () {
+            swal({
+                title: "Please wait for a moment.",
+                text: "operating...",
+                showConfirmButton: false
+            })
+        })
+
+    });
+</script>
+{%endblock%}
