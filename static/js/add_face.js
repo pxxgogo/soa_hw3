@@ -2,6 +2,20 @@
  * Created by pxxgogo on 2017/4/15.
  */
 
+function generate_face_html(faces) {
+    var html_str = "";
+    for (var i = 0; i < faces.length; i++) {
+        html_str += "<div style='display: inline-block' class='text-center'>" +
+            "<img src='" + faces[i].face_data_src + "' class='face-img' id='f-" + faces[i].face_No + "' onclick='choose_face(this)'>" +
+            "<div class='text-center'>" +
+            "<div class='label label-primary' style='display:block;'><i class='fa fa-user'></i>" + faces[i].age + " years old</div>" +
+            "<div class='label label-primary' style='display:block;'>" + faces[i].emotion + "</div>" +
+            "</div>" +
+            "</div>"
+    }
+    return html_str
+}
+
 $(document).ready(function () {
     Dropzone.options.myAwesomeDropzone = {
 
@@ -41,11 +55,9 @@ $(document).ready(function () {
                 }
                 swal("Success", "You need choose one from the detected faces.", "success");
                 $("#collapse-link").click();
-                for (var i = 0; i < faces.length; i++) {
-                    html_str += "<img src='" + faces[i].face_data_src + "' class='face-img' id='f-" + faces[i].face_No + "' onclick='choose_face(this)'>"
-                }
+                html_str = generate_face_html(faces);
                 $("#temp-faces-panel").html(html_str);
-                $("#temp-faces-panel").attr("class", "lightBoxGallery");
+                $("#temp-faces-container").show();
 
             });
             this.on("errormultiple", function (files, response) {
@@ -157,11 +169,9 @@ function take_snapshot() {
                 }
                 swal("Success", "You need choose one from the detected faces.", "success");
                 $("#collapse-link").click();
-                for (var i = 0; i < faces.length; i++) {
-                    html_str += "<img src='" + faces[i].face_data_src + "' class='face-img' id='f-" + faces[i].face_No + "' onclick='choose_face(this)'>"
-                }
+                html_str = generate_face_html(faces);
+                $("#temp-faces-container").show();
                 $("#temp-faces-panel").html(html_str);
-                $("#temp-faces-panel").attr("class", "lightBoxGallery");
 
             },
             error: function (e) {

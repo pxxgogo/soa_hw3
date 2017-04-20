@@ -45,6 +45,9 @@ $(document).ready(function () {
                 if (response['return_code'] == 2) {
                     swal("Failure", "No faces can be detected.", "error");
                 }
+                if (response['return_code'] == 4) {
+                    swal("Failure", "The username doesn't exist", "error");
+                }
             });
             this.on("errormultiple", function (files, response) {
                 swal("Failure", "Please retry later.", "error");
@@ -99,6 +102,9 @@ function take_snapshot() {
                 }
                 if (response['return_code'] == 2) {
                     swal("Failure", "No faces can be detected.", "error");
+                }
+                if (response['return_code'] == 4) {
+                    swal("Failure", "The username doesn't exist", "error");
                 }
             },
             error: function (e) {

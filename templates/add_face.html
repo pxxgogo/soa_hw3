@@ -49,7 +49,9 @@
                     <form id="my-awesome-dropzone" class="dropzone" action="#">
                         {% csrf_token %}
                         <div class="dropzone-previews"></div>
-                        <button type="submit" class="btn btn-primary pull-right" id="submit-photo-btn">Submit your photo!</button>
+                        <button type="submit" class="btn btn-primary pull-right" id="submit-photo-btn">Submit your
+                            photo!
+                        </button>
                         <div class="form-group">
                             <div class="panel-body center-block" id="my-camera">
                             </div>
@@ -65,25 +67,34 @@
 
                 </div>
 
-                <div class="lightBoxGallery hidden" id="temp-faces-panel">
-                    <p class="text-muted text-center" id="error-panel">
-                        <small></small>
-                    </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" id="temp-faces-container" style="display: none">
+                <div class="ibox-content">
+                    <h2>Choose <strong> one face </strong> from the following gallery</h2>
+                    <div class="lightBoxGallery" id="temp-faces-panel">
+                        <p class="text-muted text-center" id="error-panel">
+                            <small></small>
+                        </p>
+                    </div>
                 </div>
             </div>
-
         </div>
+
     </div>
 
-</div>
 
-{%endblock%}
+    {%endblock%}
 
-{%block script%}
-<script src="/static/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
-<script src="/static/js/plugins/dropzone/dropzone.js"></script>
-<script src="/static/js/webcam.min.js"></script>
-<script src="/static/js/add_face.js"></script>
+    {%block script%}
+    <script src="/static/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+    <script src="/static/js/plugins/dropzone/dropzone.js"></script>
+    <script src="/static/js/webcam.min.js"></script>
+    <script src="/static/js/add_face.js"></script>
 
 
-{%endblock%}
+    {%endblock%}

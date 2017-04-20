@@ -36,9 +36,26 @@
 
                     <div class="lightBoxGallery">
                         {% for face in faces_list %}
-                        <img src="{{face.face_url}}" class="face-img" id="f-{{face.face_id}}" onclick="delete_face({{face.face_id}})">
+                        <div style='display: inline-block' class='text-center'>
+                            <img src="{{face.face_url}}" class="face-img" id="f-{{face.face_id}}"
+                                 onclick="delete_face({{face.face_id}})">
+                            <div class='text-center'>
+                                <div class='label label-primary' style='display:block;'><i class='fa fa-user'></i>
+                                    {{face.age}} years old
+                                </div>
+                                <div class='label label-primary' style='display:block;'>{{face.emotion}}</div>
+                            </div>
+                        </div>
                         {% endfor %}
-                        <img src="/static/img/plus.png" class="plus-img">
+                        <div style='display: inline-block'>
+                            <img src="/static/img/plus.png" class="plus-img">
+                            <div class='text-center'>
+                                <div class='label label-primary' style='display: block; visibility: hidden'><i class='fa fa-user'></i>
+                                    hidden
+                                </div>
+                                <div class='label label-primary' style='display: block; visibility: hidden'>hidden</div>
+                            </div>
+                        </div>
 
                     </div>
 

@@ -10,6 +10,7 @@ class FaceAPI(object):
     person_group_id = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['person_group_id']
     key = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['key']
     CF.Key.set(key)
+
     @staticmethod
     def initModel():
         pass
@@ -30,10 +31,11 @@ class FaceAPI(object):
         CF.person.delete(FaceAPI.person_group_id, person_id)
         CF.person_group.train(FaceAPI.person_group_id)
 
-
     @staticmethod
     def get_face(file):
-        return CF.face.detect(file)
+        info = CF.face.detect(file, attributes="age,emotion")
+        print(info)
+        return info
 
     @staticmethod
     def add_face(person_id, face):
@@ -61,3 +63,14 @@ class FaceAPI(object):
     @staticmethod
     def verify_person(face_id, person_id):
         return CF.face.verify(face_id=face_id, person_group_id=FaceAPI.person_group_id, person_id=person_id)
+
+    @staticmethod
+    def get_emotion(emotion_dict):
+        key_score = 0
+        key_emotion = ""
+        for emotion, score in emotion_dict.items():
+            if score > key_score:
+                key_emotion = emotion
+                key_score = score
+        print(key_emotion)
+        return key_emotion

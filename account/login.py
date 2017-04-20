@@ -1,21 +1,15 @@
-from PIL import Image
+import StringIO
+import re
+
 from django.contrib import auth
+from django.core.files.base import ContentFile
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.core.files.base import ContentFile
-from io import BytesIO
-import re
-
-
 
 from faceBook.faceApi import FaceAPI
 from faceBook.models import FaceTempPhoto
 from models import AccountUser
-import StringIO
-import base64
-from HW3.settings import TEMP_PHOTO_DIR
-
 
 
 def login(request):
@@ -55,7 +49,10 @@ def login_with_updated_photo(request):
             print("over one faces")
             return JsonResponse({"return_code": 2})
         face = info[0]
-        user = AccountUser.objects.get(username=username)
+        try:
+            user = AccountUser.objects.get(username=username)
+        except Exception as e:
+            return JsonResponse({"return_code": 4})
         face_id = face["faceId"]
         print(face_id)
         verify_info = FaceAPI.verify_person(face_id, user.person_id)
@@ -66,6 +63,7 @@ def login_with_updated_photo(request):
             auth.login(request, user)
             return JsonResponse({"return_code": 0}, safe=False)
         return JsonResponse({"return_code": 3}, safe=False)
+
 
 def login_with_captured_photo(request):
     if request.method == 'POST' and not request.user.is_authenticated():
@@ -86,7 +84,10 @@ def login_with_captured_photo(request):
             print("over one faces")
             return JsonResponse({"return_code": 2})
         face = info[0]
-        user = AccountUser.objects.get(username=username)
+        try:
+            user = AccountUser.objects.get(username=username)
+        except Exception as e:
+            return JsonResponse({"return_code": 4})
         face_id = face["faceId"]
         print(face_id)
         verify_info = FaceAPI.verify_person(face_id, user.person_id)
@@ -97,4 +98,3 @@ def login_with_captured_photo(request):
             auth.login(request, user)
             return JsonResponse({"return_code": 0}, safe=False)
         return JsonResponse({"return_code": 3}, safe=False)
-

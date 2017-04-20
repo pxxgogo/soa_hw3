@@ -15,6 +15,8 @@ def face_gallery_view(request):
         faceInfo = {}
         faceInfo["face_url"] = face.face.url
         faceInfo["face_id"] = face.id
+        faceInfo["age"] = face.age
+        faceInfo["emotion"] = face.emotion
         faces.append(faceInfo)
     return render(request, "face_gallery.html",
                   {'faces_list': faces})

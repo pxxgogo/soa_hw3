@@ -18,3 +18,8 @@
 .hidden {
     display: none;
 }
+
+.label {
+    margin: 5px;
+
+}

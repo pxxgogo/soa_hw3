@@ -6,6 +6,8 @@ from django.db import models
 class Face(models.Model):
     face = models.ImageField(upload_to="faceBook", blank=True, default=None, null=True)
     face_id = models.CharField(max_length=255, default="", blank=True)
+    age = models.FloatField(default="18", blank=True)
+    emotion = models.CharField(max_length=50, default="Undetected emotion")
 
 class FaceTempPhoto(models.Model):
     photo = models.ImageField(upload_to="faceTempPhoto")
