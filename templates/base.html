@@ -76,12 +76,12 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
-                    <form role="search" class="navbar-form-custom" action="/">
+                    <div role="search" class="navbar-form-custom">
                         <div class="form-group">
-                            <input type="text" placeholder="Search (developing...)" class="form-control"
-                                   name="top-search" id="top-search">
+                            <input type="text" placeholder="Search (Powered by LUIS)" class="form-control"
+                                   name="top-search" id="top-search" onkeypress="search_press_key(this)">
                         </div>
-                    </form>
+                    </div>
                 </div>
                 {% if user.is_authenticated %}
                 <ul class="nav navbar-top-links navbar-right">

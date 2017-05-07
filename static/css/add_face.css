@@ -5,7 +5,7 @@
 
 
 .face-img:hover {
-    cursor: hand;
+    cursor: pointer;
     background: #0d8ddb;
 }
 

@@ -24,6 +24,7 @@ import account.register
 import faceBook.views
 import faceBook.kernel
 import predict_car_price.views
+import luis.query
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
@@ -41,5 +42,6 @@ urlpatterns = [
                   url(r'^face_gallery/send_captured_photo$', faceBook.kernel.send_captured_photo),
                   url(r'^predict_car_price$', predict_car_price.views.predict_car_price_view),
                   url(r'^predict_car_price/submit_info$', predict_car_price.views.submit_info),
+                  url(r'^search_in_text$', luis.query.query_text),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

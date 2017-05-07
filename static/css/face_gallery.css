@@ -5,11 +5,12 @@
 
 
 .face-img:hover, .plus-img:hover {
-    cursor: hand;
+    cursor: pointer;
     background: #0d8ddb;
 
 }
 
 .label {
     margin: 5px;
+
 }

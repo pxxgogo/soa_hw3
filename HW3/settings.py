@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'account',
     'faceBook',
     'predict_car_price',
+    'luis',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,4 @@ if not os.path.exists(os.path.join(BASE_DIR, "media")):
 TEMP_PHOTO_DIR = os.path.join(BASE_DIR, "media/faceTempPhoto")
 PREDICT_PRICE_APP_URL = "https://ussouthcentral.services.azureml.net/workspaces/7b937c4961c749629e84596aaa6596d6/services/0ffc8205b5b14c89ac81e987c54868d2/execute?api-version=2.0&details=true"
 PREDICT_PRICE_APP_KEY = "qB/TTK3cRzcvPx3UGSxB3U938I4j89VI5sBCVLkVOdbxgqEbiXDdHeOksLyvm0rHCYp0g26Fm7WiMbJflJUpOA=="
+LUIS_PREDICT_URL = "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/9d84a58b-623a-4dcf-892e-58484a78eece?subscription-key=481d3122a3f44269b38580e77198dcba&timezoneOffset=0&verbose=true&q="
