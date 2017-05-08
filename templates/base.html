@@ -74,8 +74,10 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i>
                     </a>
+                    <button id="recording-btn" class="minimalize-styl-2 btn btn-success" onclick="recording(this)"><i class="fa fa-microphone"></i>
+                    </button>
                     <div role="search" class="navbar-form-custom">
                         <div class="form-group">
                             <input type="text" placeholder="Search (Powered by LUIS)" class="form-control"
@@ -162,6 +164,10 @@
 <script src="/static/js/ajaxCookies.js"></script>
 
 <script src="/static/js/sweetalert.min.js"></script>
+
+<!-- recorder -->
+<script src="/static/js/recorder.js"></script>
+
 
 <script src="/static/js/base.js"></script>
 

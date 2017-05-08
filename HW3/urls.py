@@ -43,5 +43,6 @@ urlpatterns = [
                   url(r'^predict_car_price$', predict_car_price.views.predict_car_price_view),
                   url(r'^predict_car_price/submit_info$', predict_car_price.views.submit_info),
                   url(r'^search_in_text$', luis.query.query_text),
+                  url(r'^search_with_voice$', luis.query.query_voice),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

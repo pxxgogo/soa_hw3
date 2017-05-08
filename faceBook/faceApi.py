@@ -7,8 +7,8 @@ from HW3.settings import BASE_DIR
 
 
 class FaceAPI(object):
-    person_group_id = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['person_group_id']
-    key = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['key']
+    person_group_id = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['face_person_group_id']
+    key = json.loads(open(op.join(BASE_DIR, 'key.json'), 'r').read())['face_key']
     CF.Key.set(key)
 
     @staticmethod
