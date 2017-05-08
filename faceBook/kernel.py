@@ -16,7 +16,7 @@ def generate_faces(temp_photo):
         info = FaceAPI.get_face(temp_photo.photo)
     except Exception as e:
         print(e)
-        return 1, []
+        return 2, []
     if len(info) == 0:
         print("No faces")
         return 1, []
@@ -96,6 +96,7 @@ def upload_face_photo(request):
     temp_photo.photo = request.FILES["file[]"]
     temp_photo.save()
     return_code, face_list = generate_faces(temp_photo)
+    print(return_code)
     return JsonResponse({"return_code": return_code, "faces": face_list}, safe=False)
 
 

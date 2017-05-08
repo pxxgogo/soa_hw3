@@ -34,7 +34,7 @@ class FaceAPI(object):
     @staticmethod
     def get_face(file):
         info = CF.face.detect(file, attributes="age,emotion")
-        print(info)
+        # print(info)
         return info
 
     @staticmethod

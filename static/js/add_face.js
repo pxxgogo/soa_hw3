@@ -47,21 +47,32 @@ $(document).ready(function () {
             });
             this.on("successmultiple", function (files, response) {
                 // console.log(response.faces);
-                var faces = response.faces;
-                var html_str = "";
-                if (faces.length == 0) {
-                    swal("Failure", "No faces detected!", "error");
-                    return;
+                if (response.return_code === 1) {
+                    swal("Failure", "No faces can be detected.", "error");
                 }
-                swal("Success", "You need choose one from the detected faces.", "success");
-                $("#collapse-link").click();
-                html_str = generate_face_html(faces);
-                $("#temp-faces-panel").html(html_str);
-                $("#temp-faces-container").show();
-
+                else if (response.return_code === 2) {
+                    swal("Failure", "Something about your photo goes wrong, maybe the photo size is too small or too big.", "error");
+                } else if (response.return_code === 0) {
+                    var faces = response.faces;
+                    var html_str = "";
+                    if (faces.length == 0) {
+                        swal("Failure", "No faces can be detected.", "error");
+                        return;
+                    }
+                    swal("Success", "You need choose one from the detected faces.", "success");
+                    $("#collapse-link").click();
+                    html_str = generate_face_html(faces);
+                    $("#temp-faces-panel").html(html_str);
+                    $("#temp-faces-container").show();
+                }
             });
             this.on("errormultiple", function (files, response) {
-                swal("Failure", "No faces detected!", "error");
+                if (response.return_code === 1) {
+                    swal("Failure", "No faces can be detected.", "error");
+                }
+                else if (response.return_code === 2) {
+                    swal("Failure", "Something about your photo goes wrong, maybe the photo size is too small or too big.", "error");
+                }
             });
             this.on("addedfile", function (file) {
                 file.previewElement.addEventListener("click", function () {
@@ -161,18 +172,24 @@ function take_snapshot() {
                 })
             },
             success: function (response) {
-                var faces = response.faces;
-                var html_str = "";
-                if (faces.length == 0) {
-                    swal("Failure", "No faces detected!", "error");
-                    return;
+                if (response.return_code === 1) {
+                    swal("Failure", "No faces can be detected.", "error");
                 }
-                swal("Success", "You need choose one from the detected faces.", "success");
-                $("#collapse-link").click();
-                html_str = generate_face_html(faces);
-                $("#temp-faces-container").show();
-                $("#temp-faces-panel").html(html_str);
-
+                else if (response.return_code === 2) {
+                    swal("Failure", "Something about your photo goes wrong, maybe the photo size is too small or too big.", "error");
+                } else if (response.return_code === 0) {
+                    var faces = response.faces;
+                    var html_str = "";
+                    if (faces.length == 0) {
+                        swal("Failure", "No faces can be detected.", "error");
+                        return;
+                    }
+                    swal("Success", "You need choose one from the detected faces.", "success");
+                    $("#collapse-link").click();
+                    html_str = generate_face_html(faces);
+                    $("#temp-faces-container").show();
+                    $("#temp-faces-panel").html(html_str);
+                }
             },
             error: function (e) {
                 swal("Failure", "Something goes wrong, try later please.", "error");
